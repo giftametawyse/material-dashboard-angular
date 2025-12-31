@@ -1,0 +1,652 @@
+.container-fluid {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+.main-content {
+  margin-top:0 !important;
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+}
+/* Overall Flex Container */
+.dashboard-flex {
+  display: flex;
+  width: 873.6px; /* 330 + 10 + 513 */
+  height: 360px;
+  padding:0;
+  align-items:flex-start
+}
+/* ⚡ Voltage Card Box */
+/* Absolute position ONLY for small sensor cards */
+.sensor-card .card-header.card-header-icon {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+}
+
+/* Voltage header must stay normal */
+.voltage-inner-card .card-header.card-header-icon {
+  position: relative;
+  top: auto;
+  left: auto;
+}
+
+.voltage-card {
+  width: 335px;
+  height: 465px;
+  box-sizing: border-box;
+  flex: none;
+  padding:10px;
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.voltage-inner-card {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+
+/* Voltage Header */
+.voltage-header {
+  position: relative;
+  width: 280px;
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin: 0;
+}
+
+
+/* Voltage Icon Size */
+.voltage-header .card-icon{
+  position: absolute;
+  top: 0px;   /* Adjust for desired tightness */
+  left: 0px;
+  width: 60px;
+  height: 80px; /* or your chosen color */
+  border-radius: 2px;
+  display: flex;
+  align-items:center;
+  justify-content: center;
+  padding: 0;
+  margin: -12px; /* Adjust to align with text */
+}
+/* Make Voltage header behave like other cards */
+.voltage-inner-card .card-header {
+  margin-bottom: 10px;
+}
+
+/* Center content under header */
+.voltage-inner-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.voltage-header .card-icon i.material-icons {
+  font-size: 50px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+}
+ /* Match Temperature layout */
+.voltage-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px; /* below icon */
+}
+
+/* Centered text */
+.voltage-text {
+  text-align: center;
+}
+
+/* Same as temperature */
+.voltage-text .sensor-label {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.voltage-text .sensor-value {
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+/* Push gauge slightly down */
+.voltage-card .gauge-wrapper {
+  margin-top: 5px;
+}
+
+
+
+/* Gauge */
+.gauge-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 250px;
+  padding: 5px;
+}
+
+.gauge-wrapper canvas {
+  width:210px !important;
+  height:210px !important;
+}
+
+/* 📦 Sensor Grid container */
+.sensor-grid {
+  width: 790px;
+  height: 420px;
+  box-sizing: border-box;
+  margin-top: 0;
+  padding-top: 0;
+}
+
+/* 🧱 Sensor Grid Layout: 2x2 */
+.sensor-inner-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 405px); /* (513 - 10 gap) / 2 */
+  grid-template-rows: repeat(2, 220px);      /* (330 - 10 gap) / 2 */
+  row-gap: 14px;
+  column-gap: 14px;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+/* 🟦 Sensor Card */
+.sensor-card {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  position:relative;
+  z-index:1;
+}
+.sensor-card .card {
+  height: 100%;
+  width:100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding:8px;
+  box-sizing:border-box;
+}
+
+/* Position sensor name + value */
+.sensor-text {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.sensor-card .card {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 8px;
+  box-sizing: border-box;
+}
+.card-header{
+  margin-bottom:0;
+  padding:0px;
+}
+
+/* Header */
+.card-header.card-header-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  flex-grow: 1;
+  padding:0;
+}
+/* Move the icon box down by 3cm */
+.sensor-card .card-header.card-header-icon {
+  position: absolute;
+  top: 14px;   /* distance from top */
+  left: 14px;  /* distance from left */
+  margin: 0;
+  padding: 0px;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.card-reading {
+  align-self: flex-end;
+  margin: auto 0; /* Vertical center */
+  font-size: 14px;
+  font-weight: bold;
+}
+.card-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  width: 60px;
+ /* Prevents any visual overflow */
+  padding: 0;
+  margin: 0;
+}
+
+.card-icon i.material-icons {
+  font-size: 45px;
+  width: 45px;
+  height: 45px;
+  line-height: 45px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.card-category {
+  font-size: 10px !important;
+  padding-left:20px !important;
+  padding:15 !important;
+  margin-top:30px !important;
+  text-align: center!important;
+}
+/* Footer */
+.card-footer {
+  margin-top: auto;
+  padding-top: 2px;
+  font-size: 15px;
+  
+}
+/* Grid layout: 2 columns × 3 rows */
+.graph-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  padding: 10px;
+  overflow: visible !important;
+}
+
+/* Each graph card container */
+.graph-card {
+  width: 100%;
+  overflow: visible !important;
+}
+
+/* Make chart section larger */
+.card-chart {
+  min-height: 350px;
+  overflow: visible !important;
+}
+
+.ct-chart {
+  height: 350px !important;
+  padding:5px;
+  position:relative;
+  overflow: visible !important;
+}
+
+.ct-bar {
+  stroke-linecap: square;
+}
+.ct-axis.ct-horizontal,
+.ct-axis.ct-vertical {
+  display: none;
+}
+
+/* Rotate x-axis labels to 90 degrees */
+/* Ensure both tspans show up */
+.ct-label.ct-horizontal tspan {
+  display: block !important;
+}
+.ct-label {
+  fill: #000 !important;
+  font-size: 12px !important;
+  font-family: sans-serif !important;
+  text-anchor: middle;
+}
+
+.ct-axis-title,
+.ct-axis-line {
+  stroke: #ccc;
+  stroke-width: 2;
+}
+
+/* Adjust x-label visibility */
+.ct-label.ct-horizontal {
+  white-space: pre-line !important;
+  font-size: 11px !important;
+  line-height: 1.2 !important;
+  overflow: visible !important;
+}
+
+/* Optional: If your chart is tight vertically */
+::ng-deep .ct-label.ct-vertical {
+  fill: black !important;
+  font-weight: bold;
+}
+
+.temp-gauge-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-start;
+  margin-top: 25px;
+  padding-right: 30px;
+  position: relative;
+}
+
+.temp-gauge {
+  width: 170px;
+  height: 170px;
+  margin-top:0;
+}
+.gauge-tick {
+  stroke: #000;
+  stroke-width: 1;
+
+}
+
+.gauge-bg {
+  fill: none;
+  stroke:#ccc;
+  stroke-width: 12;
+}
+
+.gauge-progress {
+  fill: none;
+  stroke: #f04444;
+  stroke-width: 12;
+  stroke-linecap: round;
+}
+
+.gauge-inner {
+  fill: #00BFFF;
+}
+
+.gauge-scale {
+  position: absolute;
+  top: 145px; /* Move scale closer to arc */
+  right: 35px;
+  width: 140px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #000;
+  pointer-events: none;
+}
+.temperature-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: -12px; /* Reduce space after header */
+}
+
+.temp-reading {
+  display: flex;
+  align-items: center;  /* vertical center */
+  justify-content: flex-start;  /* align to left */
+  height: 100%; 
+}
+.sensor-label-value {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* align text to left */
+}
+.sensor-label {
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 4px;
+  padding-left:20px;
+}
+
+.sensor-value {
+  font-size: 18px;
+  padding-left:20px;
+}
+
+
+.humidity-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 250px; /* Ensure enough vertical height for centering */
+  padding: 0 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.humidity-gauge-wrapper {
+  flex:1;
+  display: flex;
+  justify-content: flex-end; /* Push to right */
+  align-items: center;
+  margin-top: 35px;
+  padding-right: 30px;       /* Vertical center */
+  width: 50%;                /* Right half */
+  height: 100%;
+}
+.humidity-gauge-wrapper svg {
+  filter: drop-shadow(0 0 4px rgba(135, 206, 235, 0.5)); /* soft cyan shadow */
+  margin: 0;
+  padding: 0;
+}
+
+
+.humidity-fill {
+  stroke-linecap: round;
+  transition: stroke-dashoffset 1.5s ease-in-out;
+  filter: drop-shadow(0 1px 2px rgba(135, 206, 235, 0.3)); /* Very light glow */
+}
+
+.humidity-card .card-body {
+  padding: 0 !important;
+}
+
+.humidity-card {
+  padding: 0 !important; /* Keeps it clean inside card */
+}
+.hgauge-wrapper {
+  position: absolute;
+  right: 45px;
+  top: 15%;
+  transform: translateY(0%);
+  width: 150px;
+  height: 150px;
+}
+
+.semigauge-wrapper {
+  position: absolute;
+  right: 45px;
+  top: 15%;
+  transform: translateY(0%);
+  width: 170px;
+  height: 150px;
+}
+
+
+/* ========================= */
+/* FIX VOLTAGE ICON FLOATING */
+/* ========================= */
+
+/* Stop Material Dashboard from pulling icon out */
+.voltage-inner-card .card-header-icon {
+  margin-top: 0 !important;
+  position: relative !important;
+}
+
+/* Keep icon inside card */
+.voltage-inner-card .card-icon {
+  position: relative !important;
+  top: 0 !important;
+  left: 0 !important;
+}
+
+/* Add spacing like normal header */
+.voltage-inner-card {
+  padding-top: 20px;
+}
+
+
+
+.graph-card,
+.card-chart,
+.card-header,
+.ct-chart {
+  overflow: visible !important;
+}
+
+.ct-chart {
+  height: 280px;
+  background: #fff;
+  padding: 10px;
+}
+
+.ct-line {
+  stroke-width: 2.2px !important;
+}
+
+.ct-point {
+  stroke-width: 10px !important;
+  opacity: 0 !important; /* invisible but hoverable */
+}
+
+.ct-grid {
+  stroke: #e5e7eb;
+  stroke-dasharray: 2px;
+}
+
+.ct-label {
+  fill: #6b7280;
+  font-size: 11px;
+}
+
+/* Sensor colors */
+#temperatureChart .ct-line { stroke: #22c55e; }
+#humidityChart .ct-line { stroke: #f59e0b; }
+#hydrogenChart .ct-line { stroke: #ef4444; }
+#oxymeterChart .ct-line { stroke: #3b82f6; }
+#voltage_sensorChart .ct-line { stroke: #8b5cf6; }
+
+/* Tooltip */
+.chartist-tooltip {
+  background: rgba(0,0,0,0.75);
+  color: #fff;
+  padding: 4px 8px;
+  font-size: 12px;
+  border-radius: 4px;
+  z-index: 99999;
+}
+
+
+.voltage-card .card {
+  background: linear-gradient(180deg, #f8fbff, #ffffff);
+  box-shadow: 0 20px 45px rgba(30, 64, 175, 0.18);
+  border-radius: 18px;
+}
+.sensor-card .card {
+  background: #ffffff;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  border-radius: 16px;
+}
+.card {
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.15);
+}
+
+
+.card-chart {
+  border-radius: 18px;
+  background: linear-gradient(180deg, #ffffff, #f8fafc);
+}
+
+.card-chart:hover {
+  box-shadow: 0 18px 35px rgba(0,0,0,0.12);
+}
+
+
+.sensor-label,
+.card-title {
+  color: #0f172a;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+.card {
+  background: linear-gradient(180deg, #ffffff, #f8fafc);
+}
+.sensor-text {
+  align-items: center;
+  text-align: center;
+}
+
+
+.main-content {
+  background: #f1f5f9;
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 18px;
+}
+
+
+
+.scroll-hint {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  /* 🔥 Move it upward */
+  margin-top: -20px;
+  margin-bottom: 20px;
+
+  color: #4d525b;
+  font-size: 14px;
+  opacity: 0.9;
+
+  animation: fadeBounce 1.6s infinite;
+  cursor: default;
+}
+
+.scroll-hint .material-icons {
+  font-size: 30px;
+  margin-top: -6px;
+}
+@keyframes fadeBounce {
+  0%, 100% {
+    opacity: 0.9;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 0.6;
+    transform: translateY(8px);
+  }
+}
+
+.graph-section {
+  border-top: 1px solid #e5e7eb;
+  padding-top: 24px;
+}

@@ -1,0 +1,137 @@
+/* ==========================================
+   HYDROGEN PAGE – BLUE THEME (FINAL)
+   Scoped & Safe
+========================================== */
+
+/* ===============================
+   CARD HEADER (TOP BLUE BOX)
+================================ */
+
+#hydrogen .card-header {
+  background: linear-gradient(135deg, #2196f3, #1976d2) !important;
+  color: #ffffff !important;
+  border-radius: 6px;
+  padding: 16px 20px !important;
+  margin-bottom: 10px !important;
+  box-shadow: 0 6px 16px rgba(33, 150, 243, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Header title */
+#hydrogen .card-header .card-title,
+#hydrogen .card-header h4 {
+  color: #ffffff !important;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+/* Header subtitle */
+#hydrogen .card-header .card-category {
+  color: #e3f2fd !important;
+  opacity: 0.95;
+  margin: 0;
+}
+
+/* ===============================
+   SEARCH BAR
+================================ */
+
+#hydrogen .navbar-form,
+#hydrogen .bmd-form-group,
+#hydrogen .input-group {
+  margin: 0 !important;
+}
+
+#hydrogen .input-group {
+  display: flex;
+  align-items: center;
+}
+
+/* Search input */
+#hydrogen .form-control {
+  height: 38px !important;
+  line-height: 38px !important;
+  padding: 6px 12px !important;
+  background: rgba(255, 255, 255, 0.18) !important;
+  border: none !important;
+  color: #ffffff !important;
+}
+
+#hydrogen .form-control::placeholder {
+  color: #bbdefb !important;
+}
+
+/* Search button */
+#hydrogen .btn.btn-white {
+  height: 38px !important;
+  width: 38px !important;
+  background-color: #ffffff !important;
+  color: #1976d2 !important;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 6px;
+}
+
+/* Search icon size */
+#hydrogen .btn.btn-white i {
+  font-size: 20px !important;
+  line-height: 2 !important;
+  color: #1976d2 !important;
+}
+
+/* ===============================
+   REMOVE EXTRA GAP
+================================ */
+
+#hydrogen.card {
+  margin-top: 0 !important;
+}
+
+#hydrogen .card-body {
+  padding-top: 10px !important;
+}
+
+/* ===============================
+   TABLE STYLING
+================================ */
+
+#hydrogen thead th {
+  color: #1976d2 !important;
+  font-weight: 600;
+}
+
+/* Row hover */
+#hydrogen table.table-hover tbody tr:hover {
+  background-color: rgba(33, 150, 243, 0.08);
+}
+
+/* ===============================
+   PAGINATION (BLUE)
+================================ */
+
+.pagination .page-item:not(.disabled) .page-link {
+  cursor: pointer;
+}
+
+/* Active page */
+.page-item.active .page-link {
+  background-color: #1976d2 !important;
+  border-color: #1976d2 !important;
+  color: #ffffff !important;
+}
+
+/* Normal page */
+.page-link {
+  color: #1976d2 !important;
+  font-weight: 500;
+}
+
+/* Disabled page */
+.page-item.disabled .page-link {
+  color: #90a4ae !important;
+  pointer-events: none;
+}

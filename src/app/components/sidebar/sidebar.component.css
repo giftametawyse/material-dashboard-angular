@@ -1,0 +1,92 @@
+
+/* ===============================
+   SIDEBAR – FORCE BLUE THEME
+================================ */
+
+.sidebar {
+  background: #ffffff;
+  border-right: 1px solid #e5e7eb;
+}
+
+/* NAV ITEM */
+.sidebar .nav-item {
+  margin: 4px 8px;
+}
+
+/* LINK */
+.sidebar .nav-link {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  padding: 12px 16px;
+  border-radius: 8px;
+
+  color: #1f2937 !important;   /* FORCE DARK TEXT */
+  font-weight: 600;
+  font-size: 16px;
+
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+/* ICON */
+.sidebar .nav-link i.material-icons {
+  font-size: 22px;
+  color: #1e88e5 !important;   /* FORCE BLUE ICON */
+}
+
+/* TEXT */
+.sidebar .nav-link span {
+  color: #1f2937 !important;
+  font-weight: 600;
+}
+
+/* ===============================
+   HOVER STATE
+================================ */
+
+.sidebar .nav-link:hover {
+  background: rgba(30, 136, 229, 0.1);
+}
+
+.sidebar .nav-link:hover i,
+.sidebar .nav-link:hover span {
+  color: #1e88e5 !important;
+}
+
+/* ===============================
+   ACTIVE STATE
+================================ */
+
+.sidebar .nav-item.active .nav-link {
+  background: linear-gradient(135deg, #1e88e5, #1565c0);
+  box-shadow: 0 4px 6px rgba(21, 101, 192, 0.35);
+}
+
+.sidebar .nav-item.active .nav-link i,
+.sidebar .nav-item.active .nav-link span {
+  color: #ffffff !important;
+}
+
+.nav-section {
+  margin: 18px 16px 8px;
+  font-size: 11px;
+  color: #64748b;
+  letter-spacing: 0.08em;
+}
+
+.sidebar .nav li.active > a p {
+  font-weight: 600;
+}
+
+.sidebar .nav li.active > a::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 4px;
+  height: 100%;
+  background-color: #ffffff;
+  border-radius: 0 4px 4px 0;
+}

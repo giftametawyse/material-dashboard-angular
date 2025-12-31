@@ -1,0 +1,80 @@
+<div class="profile-wrapper" *ngIf="user; else errorTpl">
+
+  <div class="profile-card">
+
+    <!-- PROFILE HEADER -->
+    <div class="profile-header">
+      <div class="avatar">
+        <i class="material-icons">person</i>
+      </div>
+
+      <div class="profile-title">
+        <h2>{{ user.username }}</h2>
+        <div class="badges">
+          <span class="badge active">Active</span>
+          <span class="badge role">Standard User</span>
+        </div>
+        <p class="subtitle">Environmental Monitoring Platform</p>
+      </div>
+    </div>
+
+    <!-- META INFO -->
+    <div class="meta-row">
+      <div class="meta-item">
+        <i class="material-icons">schedule</i>
+        <span>Last login: Today, 10:30 AM</span>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="meta-item">
+        <i class="material-icons">badge</i>
+        <span>User ID: {{ user.id }}</span>
+      </div>
+
+      <div class="meta-item">
+        <i class="material-icons">verified_user</i>
+        <span>Account Verified</span>
+      </div>
+    </div>
+
+    <!-- ACCOUNT INFO -->
+    <h4 class="section-title">Account Information</h4>
+
+    <div class="info-grid">
+      <div class="info-box">
+        <label>Email Address</label>
+        <strong>{{ user.email }}</strong>
+      </div>
+
+      <div class="info-box">
+        <label>Phone Number</label>
+        <strong>{{ user.phone || 'Not provided' }}</strong>
+      </div>
+    </div>
+
+    <!-- ACTIONS -->
+    <h4 class="section-title">
+      <i class="material-icons">info</i> Account Actions
+    </h4>
+
+    <div class="actions">
+      <button class="btn primary">
+        <i class="material-icons">edit</i>
+        Edit Profile
+      </button>
+
+      <button class="btn secondary">
+        <i class="material-icons">lock</i>
+        Security Settings
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<ng-template #errorTpl>
+  <p class="text-danger text-center mt-4">
+    {{ errorMessage }}
+  </p>
+</ng-template>

@@ -1,0 +1,73 @@
+/* =========================
+   GLOBAL BLUE ENTERPRISE THEME
+========================= */
+:root {
+  --primary-blue: #2563eb;
+  --primary-soft: #e8f0ff;
+  --cyan: #06b6d4;
+  --green: #10b981;
+  --orange: #f59e0b;
+  --purple: #5c5ff6;
+  --danger: #ef4444;
+
+  --bg-page: #f8fafc;
+  --card-bg: #ffffff;
+  --border-soft: #e5e7eb;
+
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+}
+
+body {
+  background-color: var(--bg-page);
+  color: var(--text-main);
+  font-family: "Inter", "Roboto", sans-serif;
+}
+
+.card {
+  background: var(--card-bg);
+  border-radius: 14px;
+  border: 1px solid var(--border-soft);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+}
+
+.icon-box {
+  width: 60px;
+  height: 44px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #2563eb, #1e40af);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.icon-box i {
+  font-size: 22px;
+}
+
+/* ===============================
+   COMPACT NOTIFICATION (OVERRIDE)
+================================ */
+
+[data-notify="container"] {
+  min-width: 200px !important;
+  max-width: 240px !important;
+  padding: 8px 10px !important;
+  margin-top: 60px !important;
+  border-radius: 8px !important;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.18) !important;
+}
+
+[data-notify="container"] .toast-title {
+  font-size: 12px !important;
+  font-weight: 600;
+}
+
+[data-notify="container"] .toast-text {
+  font-size: 12px !important;
+}
+
+[data-notify="container"] .material-icons {
+  font-size: 18px !important;
+}

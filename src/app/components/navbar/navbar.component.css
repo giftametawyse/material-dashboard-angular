@@ -1,0 +1,78 @@
+.custom-navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  height: 80px;
+
+  background: linear-gradient(90deg, #1e3a8a,#1d4ed8);
+  color: #ffffff;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+}
+
+.brand-text h4 {
+  margin: 0;
+  font-weight: 600;
+}
+
+.brand-text span {
+  font-size: 12px;
+  color: #e7ecf7;
+}
+
+
+
+/* RIGHT */
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.icon-btn {
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  border-radius: 10px;
+  padding: 8px;
+  cursor: pointer;
+  position: relative;
+}
+
+.icon-btn i {
+  color: #fff;
+  font-size: 20px;
+}
+
+.notification-dot {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 8px;
+  height: 8px;
+  background: red;
+  border-radius: 50%;
+}
+
+.profile-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 8px 14px;
+  cursor: pointer;
+}
+
+.profile-btn i {
+  font-size: 18px;
+}
+
+#profil.card {
+  margin-top: -10px !important;
+}

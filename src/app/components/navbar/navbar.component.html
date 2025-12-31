@@ -1,0 +1,26 @@
+<nav class="navbar custom-navbar">
+  <!-- LEFT: Brand -->
+  <div class="navbar-left">
+    <div class="brand-text">
+      <h4>POWER GEN</h4>
+      <span>Environmental Monitoring</span>
+    </div>
+  </div>
+
+  <!-- RIGHT: Actions -->
+  <div class="navbar-right">
+    <button class="icon-btn" (click)="goToNotifications()">
+      <i class="material-icons">notifications</i>
+      <span class="notification-dot"></span>
+    </button>
+
+    <button class="icon-btn" (click)="goToSettings()">
+      <i class="material-icons">person</i>
+    </button>
+
+    <button class="profile-btn" (click)="logout()">
+      <i class="material-icons">logout</i>
+      <span>Logout</span>
+    </button>
+  </div>
+</nav>

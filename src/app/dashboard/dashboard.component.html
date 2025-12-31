@@ -1,0 +1,695 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="dashboard-flex">
+      
+        <!-- Voltage card -->
+        <!-- Voltage card -->
+<div class="voltage-card">
+  <div class="card card-stats voltage-inner-card">
+
+    <!-- Header (INSIDE card, Material default) -->
+    <div class="card-header card-header-info card-header-icon voltage-header">
+      <div class="card-icon">
+        <i class="material-icons">bolt</i>
+      </div>
+    </div>
+
+    <!-- Text -->
+    <div class="voltage-text">
+      <div class="sensor-label">Voltage</div>
+      <div class="sensor-value">
+        {{ latestData['voltage_sensor']?.sensor_reading || '--' }} V
+      </div>
+    </div>
+
+    <!-- Gauge -->
+    <div class="gauge-wrapper">
+      <canvas id="voltageGauge"></canvas>
+    </div>
+
+    <!-- Footer -->
+    <div class="card-footer">
+      <div class="stats">
+        <i class="material-icons">access_time</i>
+        Received at: {{ latestData['voltage_sensor']?.timestamp || 'Loading...' }}
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+      <!-- Sensor grid -->
+        <!-- Sensor grid -->
+        <div class="sensor-grid">
+        <div class="sensor-inner-grid">
+            <div *ngFor="let sensor of ['temperature', 'humidity']" class="sensor-card">
+            
+            <!-- ✅ Temperature card -->
+            <ng-container *ngIf="sensor === 'temperature';">
+            <div class="card card-stats h-100 w-100">
+                <div class="card-header card-header-warning card-header-icon">
+                <div class="card-icon">
+                    <i class="material-icons">thermostat</i>
+                </div>
+                </div>
+
+                <div class="temperature-content">
+                <!-- Sensor text -->
+                <div class="sensor-text">
+                    <div class="sensor-label text-capitalize">{{ sensor }}</div>
+                    <div class="sensor-value">
+                    {{ latestData[sensor]?.sensor_reading || '--' }}
+                    </div>
+                </div>
+
+                <!-- Gauge starts here -->
+                <!-- Gauge starts here -->
+                <div class="temp-gauge-container">
+                <svg class="temp-gauge" viewBox="0 0 200 200">
+                    <!-- Outer 270° arc -->
+                    <path
+                    class="gauge-bg"
+                    d="M40,160 A85,85 0 1,1 160,160"
+                    />
+                    <path
+                    class="gauge-progress"
+                    [attr.d]="temperatureArcPath"
+                    />
+                    <!-- Tiny scale ticks (every 10 degrees) -->
+                    <g class="gauge-ticks">
+                    <ng-container *ngFor="let tick of ticks">
+                        <line
+                        [attr.x1]="tick.x1"
+                        [attr.y1]="tick.y1"
+                        [attr.x2]="tick.x2"
+                        [attr.y2]="tick.y2"
+                        class="gauge-tick"
+                        />
+                    </ng-container>
+                    </g>
+                    <g class="gauge-labels">
+                    <ng-container *ngFor="let label of tickLabels">
+                        <text [attr.x]="label.x" [attr.y]="label.y" text-anchor="middle" alignment-baseline="middle" font-size="10" fill="#000">
+                        {{ label.value }}
+                        </text>
+                    </ng-container>
+                    </g>
+
+                    <!-- Inner solid circle -->
+                    <circle cx="100" cy="100" r="50" class="gauge-inner" />
+                    <text x="100" y="110" text-anchor="middle" font-size="24" fill="black" font-weight="bold">
+                    {{ latestData['temperature']?.sensor_reading || '--' }}°C
+                    </text>
+                </svg>
+                <div class="gauge-scale">
+                    <span>0°</span>
+                    <span>50°</span>
+                </div>
+                </div>
+                </div>
+
+
+                <div class="card-footer">
+                <div class="stats">
+                    <i class="material-icons">access_time</i>
+                    <span>Received at: {{ latestData['temperature']?.timestamp || 'Loading...' }}</span>
+                </div>
+                </div>
+            </div>
+            </ng-container>
+            <!--humidity-->
+            <ng-container *ngIf="sensor === 'humidity'">
+            <div class="card card-stats h-100 w-100 humidity-card">
+                <div class="card-header card-header-info card-header-icon">
+                <div class="card-icon">
+                    <i class="material-icons">water_drop</i>
+                </div>
+                </div>
+
+                <div class="humidity-content">
+                <!-- Sensor text -->
+                <div class="sensor-text">
+                    <div class="sensor-label text-capitalize">{{ sensor }}</div>
+                    <div class="sensor-value">
+                    {{ latestData[sensor]?.sensor_reading || '--' }}
+                    </div>
+                </div>
+
+                <!-- Animated Gauge (updated to full circle fill style) -->
+                <div class="humidity-gauge-wrapper">
+                <svg width="150" height="150" viewBox="0 0 200 200">
+                    <defs>
+                        <filter id="innerShadow" x="-20%" y="-20%" width="140%" height="140%">
+                            <feDropShadow dx="0" dy="0" stdDeviation="2" flood-color="#87CEEB" flood-opacity="0.4"/>
+                        </filter>
+
+                        <clipPath id="humidityClip">
+                        <rect
+                            x="0"
+                            [attr.y]="200 - getHumidityFillHeight()"
+                            width="200"
+                            [attr.height]="getHumidityFillHeight()"
+                        ></rect>
+                        </clipPath>
+
+                    </defs>
+
+
+
+                    <!-- Outer Border -->
+                    <circle cx="100" cy="100" r="98" fill="none" stroke="#1E90FF" stroke-width="4" />
+
+                    <!-- Background Circle with subtle inner shadow -->
+                    <circle
+                    cx="100"
+                    cy="100"
+                    r="94"
+                    fill="white"
+                    stroke="0"
+                    filter="url(#innerShadow)"
+                    />
+
+                    <!-- Filled portion clipped to value -->
+                    <circle
+                    cx="100"
+                    cy="100"
+                    r="93"
+                    fill="#B0E0E6"
+                    class="humididyt-fill"
+                    clip-path="url(#humidityClip)"
+                    />
+
+                    <!-- Humidity Value Label -->
+                    <text x="100" y="110" text-anchor="middle" font-size="20" fill="black">
+                    {{ humidityValue }} g/m³
+                    </text>
+                </svg>
+                </div>
+
+                </div>
+
+                <div class="card-footer">
+                <div class="stats">
+                    <i class="material-icons">access_time</i>
+                    <span>Received at: {{ latestData[sensor]?.timestamp || 'Loading...' }}</span>
+                </div>
+                </div>
+            </div>
+            </ng-container>
+            </div>
+
+
+
+<!-- ✅ Only for oxymeter (full circle) and hydrogen (semi-circle) -->
+<!-- ✅ Oxymeter -->
+<div *ngIf="latestData?.oxymeter" class="card card-stats h-100 w-100 sensor-gauge-card">
+    <div class="card-header card-header-info card-header-icon">
+                <div class="card-icon" style="transform: translate(-8px, 24px);">
+                    <i class="material-icons" >air</i>
+                </div>
+                </div>
+  <div class="sensor-text">
+    <div class="sensor-label">Oxygen</div>
+    <div class="sensor-value">{{ latestData.oxymeter?.sensor_reading || '--' }}</div>
+  </div>
+
+  <div class="hgauge-wrapper">
+    <svg viewBox="0 0 200 200" width="150" height="150">
+
+      <!-- Thin Black Base Circle -->
+      <circle cx="100" cy="100" r="90" stroke="#C0C0C0" stroke-width="2" fill="none" />
+
+      <!-- Skyblue Sketchy Arc -->
+      <path
+        [attr.d]="getArcPath('oxymeter')"
+        stroke="#00BFFF"
+        stroke-width="6"
+        fill="none"
+        stroke-linecap="round"
+      />
+
+      <!-- Faint Division Lines -->
+      <line x1="100" y1="10" x2="100" y2="20" stroke="#ccc" stroke-width="0.5" opacity="0.4" />
+      <line x1="190" y1="100" x2="180" y2="100" stroke="#ccc" stroke-width="0.5" opacity="0.4" />
+      <line x1="100" y1="190" x2="100" y2="180" stroke="#ccc" stroke-width="0.5" opacity="0.4" />
+      <line x1="10" y1="100" x2="20" y2="100" stroke="#ccc" stroke-width="0.5" opacity="0.4" />
+
+      <!-- Labels at Each Quarter -->
+      <text x="100" y="35" text-anchor="middle" font-size="10" fill="#888" opacity="0.6">¼</text>
+      <text x="165" y="105" text-anchor="start" font-size="10" fill="#888" opacity="0.6">½</text>
+      <text x="100" y="170" text-anchor="middle" font-size="10" fill="#888" opacity="0.6">¾</text>
+      <text x="35" y="105" text-anchor="end" font-size="10" fill="#888" opacity="0.6">1</text>
+
+      <!-- Value Text -->
+      <text x="100" y="110" text-anchor="middle" dominant-baseline="middle" font-size="24" fill="#000" font-weight="bold">
+        {{ latestData.oxymeter?.sensor_reading || '--' }}%
+      </text>
+    </svg>
+  </div>
+
+  <div class="card-footer">
+    <div class="stats">
+      <i class="material-icons">access_time</i>
+      Received at: {{ latestData.oxymeter?.timestamp || 'Loading...' }}
+    </div>
+  </div>
+</div>
+
+<!-- ✅ Hydrogen -->
+<!-- ✅ Hydrogen -->
+<div *ngIf="latestData?.hydrogen" class="card card-stats h-100 w-100 sensor-gauge-card">
+        <div class="card-header card-header-info card-header-icon">
+                <div class="card-icon" style="transform: translate(-8px, 24px);">
+                    <i class="material-icons">science</i>
+                </div>
+                </div>
+  <div class="sensor-text">
+    <div class="sensor-label">Hydrogen</div>
+    <div class="sensor-value">{{ latestData.hydrogen?.sensor_reading || '--' }}</div>
+  </div>
+
+  <div class="semigauge-wrapper">
+    <svg viewBox="0 0 200 120" width="170" height="150">
+      <!-- Thin Black Base Semicircle -->
+      <path d="M10,100 A90,90 0 0,1 190,100" stroke="#C0C0C0" stroke-width="2" fill="none" />
+
+      <!-- Skyblue Sketchy Arc (overlaid on same path) -->
+      <path
+        [attr.d]="getArcPath('hydrogen')"
+        stroke="blue"
+        stroke-width="6"
+        fill="none"
+        stroke-linecap="round"
+      />
+
+      <!-- Value Text -->
+      <text x="100" y="75" text-anchor="middle" font-size="20" fill="#000" font-weight="bold">
+        {{ latestData.hydrogen?.sensor_reading || '--' }}
+      </text>
+    </svg>
+  </div>
+
+  <div class="card-footer">
+    <div class="stats">
+      <i class="material-icons">access_time</i>
+      Received at: {{ latestData.hydrogen?.timestamp || 'Loading...' }}
+    </div>
+  </div>
+</div>
+        </div>
+        </div>
+ <!-- sensor grid end -->
+
+    </div>
+  </div>
+</div> 
+<div class="scroll-hint" id="scrollHint">
+  <span class="hint-text">Scroll to view analytics</span>
+  <i class="material-icons">keyboard_arrow_down</i>
+</div>
+<!--graph section-->   
+<div class="graph-section">
+  <div class="graph-grid">
+    <div class="graph-card" *ngFor="let sensor of ['temperature', 'humidity', 'hydrogen', 'oxymeter', 'voltage_sensor']">
+      <div class="card card-chart">
+        <div class="card-header chart-white-header">
+  <div class="ct-chart" [id]="sensor + 'Chart'"></div>
+</div>
+
+
+        <div class="card-body" style="height: 60px;">
+          <h4 class="card-title text-capitalize">
+            <a [routerLink]="['/table-list']" [fragment]="sensor"
+              style="text-decoration: none; color: inherit; cursor: pointer;">
+              {{ sensor }}
+            </a>
+          </h4>
+          <p class="card-category">
+            Latest: {{ latestData[sensor]?.sensor_reading ?? '--' }} |
+            Time: {{ latestData[sensor]?.timestamp ?? '--' }}
+          </p>
+        </div>
+
+        <div class="card-footer">
+          <div class="stats">
+            <i class="material-icons">access_time</i> updated just now
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <!--
+      <div class="col-lg-6 col-md-12" *ngIf="selectedSensor">
+              <div class="card">
+                  <div class="card-header card-header-warning">
+                      <h4 class="card-title">Past {{ selectedSensor | titlecase }} Readings</h4>
+                      <p class="card-category">Readings till:{{ historicalData[0]?.timestamp || 'No data available' }}</p>
+                  </div>
+                  <button class="btn btn-sm btn-danger" (click)="closeHistory()">Close</button>
+                  <div class="card-body table-responsive">
+                      <table class="table table-hover">
+                          <thead class="text-warning">
+                              <th>#</th>
+                              <th>Timestamp</th>
+                              <th>Reading</th>
+                              <th>Serial No</th>
+                          </thead>
+                          <tbody>
+                              <tr *ngFor="let row of historicalData; let i = index">
+                                  <td>{{ i + 1 }}</td>
+                                  <td>{{ row.timestamp }}</td>
+                                  <td>{{ row.sensor_reading }}</td>
+                                  <td>{{ row.serial_no }}</td>
+                              </tr>
+                              <tr>
+                                  <td>2</td>
+                                  <td>Minerva Hooper</td>
+                                  <td>$23,789</td>
+                                  <td>Curaçao</td>
+                              </tr>
+                              <tr>
+                                  <td>3</td>
+                                  <td>Sage Rodriguez</td>
+                                  <td>$56,142</td>
+                                  <td>Netherlands</td>
+                              </tr>
+                              <tr>
+                                  <td>4</td>
+                                  <td>Philip Chaney</td>
+                                  <td>$38,735</td>
+                                  <td>Korea, South</td>
+                              </tr>
+                              
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+          </div>
+          -->
+     <!--  
+      <div class="row">
+        
+           
+          <div class="col-lg-6 col-md-12">
+              <div class="card">
+                  <div class="card-header card-header-tabs card-header-primary">
+                      <div class="nav-tabs-navigation">
+                          <div class="nav-tabs-wrapper">
+                              <span class="nav-tabs-title">Tasks:</span>
+                              <ul class="nav nav-tabs" data-tabs="tabs">
+                                  <li class="nav-item">
+                                      <a mat-button class="nav-link active" href="#profile" data-toggle="tab">
+                                          <i class="material-icons">bug_report</i> Bugs
+                                          <div class="ripple-container"></div>
+                                      </a>
+                                  </li>
+                                  <li class="nav-item">
+                                      <a mat-button class="nav-link" href="#messages" data-toggle="tab">
+                                          <i class="material-icons">code</i> Website
+                                          <div class="ripple-container"></div>
+                                      </a>
+                                  </li>
+                                  <li class="nav-item">
+                                      <a mat-button class="nav-link" href="#settings" data-toggle="tab">
+                                          <i class="material-icons">cloud</i> Server
+                                          <div class="ripple-container"></div>
+                                      </a>
+                                  </li>
+                              </ul>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="card-body">
+                      <div class="tab-content">
+                          <div class="tab-pane active" id="profile">
+                              <table class="table">
+                                  <tbody>
+                                      <tr>
+                                          <td>
+                                              <div class="form-check">
+                                                  <label class="form-check-label">
+                                                      <input class="form-check-input" type="checkbox" value="" checked>
+                                                      <span class="form-check-sign">
+                                                          <span class="check"></span>
+                                                      </span>
+                                                  </label>
+                                              </div>
+                                          </td>
+                                          <td>Sign contract for "What are conference organizers afraid of?"</td>
+                                          <td class="td-actions text-right">
+                                              <button mat-raised-button type="button" matTooltip="Edit Task" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon">
+                                                  <i class="material-icons">edit</i>
+                                              </button>
+                                              <button mat-raised-button type="button" matTooltip="Remove" [matTooltipPosition]="'above'" class="btn btn-danger btn-link btn-sm btn-just-icon">
+                                                  <i class="material-icons">close</i>
+                                              </button>
+                                          </td>
+                                      </tr>
+                                      <tr>
+                                          <td>
+                                              <div class="form-check">
+                                                  <label class="form-check-label">
+                                                      <input class="form-check-input" type="checkbox" value="">
+                                                      <span class="form-check-sign">
+                                                          <span class="check"></span>
+                                                      </span>
+                                                  </label>
+                                              </div>
+                                          </td>
+                                          <td>Lines From Great Russian Literature? Or E-mails From My Boss?</td>
+                                          <td class="td-actions text-right">
+                                              <button mat-raised-button type="button" matTooltip="Edit Task" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon">
+                                                  <i class="material-icons">edit</i>
+                                              </button>
+                                              <button mat-raised-button type="button" matTooltip="Remove" [matTooltipPosition]="'above'" class="btn btn-danger btn-link btn-sm btn-just-icon">
+                                                  <i class="material-icons">close</i>
+                                              </button>
+                                          </td>
+                                      </tr>
+                                      <tr>
+                                          <td>
+                                              <div class="form-check">
+                                                  <label class="form-check-label">
+                                                      <input class="form-check-input" type="checkbox" value="">
+                                                      <span class="form-check-sign">
+                                                          <span class="check"></span>
+                                                      </span>
+                                                  </label>
+                                              </div>
+                                          </td>
+                                          <td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
+                                          </td>
+                                          <td class="td-actions text-right">
+                                              <button mat-raised-button type="button" matTooltip="Edit Task" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon">
+                                                  <i class="material-icons">edit</i>
+                                              </button>
+                                              <button mat-raised-button type="button" matTooltip="Remove" [matTooltipPosition]="'above'" class="btn btn-danger btn-link btn-sm btn-just-icon">
+                                                  <i class="material-icons">close</i>
+                                              </button>
+                                          </td>
+                                      </tr>
+                                      <tr>
+                                          <td>
+                                              <div class="form-check">
+                                                  <label class="form-check-label">
+                                                      <input class="form-check-input" type="checkbox" value="" checked>
+                                                      <span class="form-check-sign">
+                                                          <span class="check"></span>
+                                                      </span>
+                                                  </label>
+                                              </div>
+                                          </td>
+                                          <td>Create 4 Invisible User Experiences you Never Knew About</td>
+                                          <td class="td-actions text-right">
+                                              <button mat-raised-button type="button" matTooltip="Edit Task" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon">
+                                                  <i class="material-icons">edit</i>
+                                              </button>
+                                              <button mat-raised-button type="button" matTooltip="Remove" [matTooltipPosition]="'above'" class="btn btn-danger btn-link btn-sm btn-just-icon">
+                                                  <i class="material-icons">close</i>
+                                              </button>
+                                          </td>
+                                      </tr>
+                                  </tbody>
+                              </table>
+                          </div>
+                          <div class="tab-pane" id="messages">
+                              <table class="table">
+                                  <tbody>
+                                      <tr>
+                                          <td>
+                                              <div class="form-check">
+                                                  <label class="form-check-label">
+                                                      <input class="form-check-input" type="checkbox" value="" checked>
+                                                      <span class="form-check-sign">
+                                                          <span class="check"></span>
+                                                      </span>
+                                                  </label>
+                                              </div>
+                                          </td>
+                                          <td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
+                                          </td>
+                                          <td class="td-actions text-right">
+                                              <button mat-raised-button type="button" matTooltip="Edit Task" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon">
+                                                  <i class="material-icons">edit</i>
+                                              </button>
+                                              <button mat-raised-button type="button" matTooltip="Remove" [matTooltipPosition]="'above'" class="btn btn-danger btn-link btn-sm btn-just-icon">
+                                                  <i class="material-icons">close</i>
+                                              </button>
+                                          </td>
+                                      </tr>
+                                      <tr>
+                                          <td>
+                                              <div class="form-check">
+                                                  <label class="form-check-label">
+                                                      <input class="form-check-input" type="checkbox" value="">
+                                                      <span class="form-check-sign">
+                                                          <span class="check"></span>
+                                                      </span>
+                                                  </label>
+                                              </div>
+                                          </td>
+                                          <td>Sign contract for "What are conference organizers afraid of?"</td>
+                                          <td class="td-actions text-right">
+                                              <button mat-raised-button type="button" matTooltip="Edit Task" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon">
+                                                  <i class="material-icons">edit</i>
+                                              </button>
+                                              <button mat-raised-button type="button" matTooltip="Remove" [matTooltipPosition]="'above'" class="btn btn-danger btn-link btn-sm btn-just-icon">
+                                                  <i class="material-icons">close</i>
+                                              </button>
+                                          </td>
+                                      </tr>
+                                  </tbody>
+                              </table>
+                          </div>
+                          <div class="tab-pane" id="settings">
+                              <table class="table">
+                                  <tbody>
+                                      <tr>
+                                          <td>
+                                              <div class="form-check">
+                                                  <label class="form-check-label">
+                                                      <input class="form-check-input" type="checkbox" value="">
+                                                      <span class="form-check-sign">
+                                                          <span class="check"></span>
+                                                      </span>
+                                                  </label>
+                                              </div>
+                                          </td>
+                                          <td>Lines From Great Russian Literature? Or E-mails From My Boss?</td>
+                                          <td class="td-actions text-right">
+                                              <button mat-raised-button type="button" matTooltip="Edit Task" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon">
+                                                  <i class="material-icons">edit</i>
+                                              </button>
+                                              <button mat-raised-button type="button" matTooltip="Remove" [matTooltipPosition]="'above'" class="btn btn-danger btn-link btn-sm btn-just-icon">
+                                                  <i class="material-icons">close</i>
+                                              </button>
+                                          </td>
+                                      </tr>
+                                      <tr>
+                                          <td>
+                                              <div class="form-check">
+                                                  <label class="form-check-label">
+                                                      <input class="form-check-input" type="checkbox" value="" checked>
+                                                      <span class="form-check-sign">
+                                                          <span class="check"></span>
+                                                      </span>
+                                                  </label>
+                                              </div>
+                                          </td>
+                                          <td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
+                                          </td>
+                                          <td class="td-actions text-right">
+                                              <button mat-raised-button type="button" matTooltip="Edit Task" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon">
+                                                  <i class="material-icons">edit</i>
+                                              </button>
+                                              <button mat-raised-button type="button" matTooltip="Remove" [matTooltipPosition]="'above'" class="btn btn-danger btn-link btn-sm btn-just-icon">
+                                                  <i class="material-icons">close</i>
+                                              </button>
+                                          </td>
+                                      </tr>
+                                      <tr>
+                                          <td>
+                                              <div class="form-check">
+                                                  <label class="form-check-label">
+                                                      <input class="form-check-input" type="checkbox" value="" checked>
+                                                      <span class="form-check-sign">
+                                                          <span class="check"></span>
+                                                      </span>
+                                                  </label>
+                                              </div>
+                                          </td>
+                                          <td>Sign contract for "What are conference organizers afraid of?"</td>
+                                          <td class="td-actions text-right">
+                                              <button mat-raised-button type="button" matTooltip="Edit Task" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon">
+                                                  <i class="material-icons">edit</i>
+                                              </button>
+                                              <button mat-raised-button type="button" matTooltip="Remove" [matTooltipPosition]="'above'" class="btn btn-danger btn-link btn-sm btn-just-icon">
+                                                  <i class="material-icons">close</i>
+                                              </button>
+                                          </td>
+                                      </tr>
+                                  </tbody>
+                              </table>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          -->
+          <!--
+          <div class="col-lg-6 col-md-12">
+              <div class="card">
+                  <div class="card-header card-header-warning">
+                      <h4 class="card-title">Past {{ selectedSensor | titlecase }} Readings</h4>
+                      <p class="card-category">Readings till:{{ historicalData[0]?.timestamp || 'No data available' }}</p>
+                  </div>
+                  <button class="btn btn-sm btn-danger" (click)="closeHistory()">Close</button>
+                  <div class="card-body table-responsive">
+                      <table class="table table-hover">
+                          <thead class="text-warning">
+                              <th>#</th>
+                              <th>Timestamp</th>
+                              <th>Reading</th>
+                              <th>Serial No</th>
+                          </thead>
+                          <tbody>
+                              <tr *ngFor="let row of historicalData; let i = index">
+                                  <td>{{ i + 1 }}</td>
+                                  <td>{{ row.timestamp }}</td>
+                                  <td>{{ row.sensor_reading }}</td>
+                                  <td>{{ row.serial_no }}</td>
+                              </tr>
+                              <tr>
+                                  <td>2</td>
+                                  <td>Minerva Hooper</td>
+                                  <td>$23,789</td>
+                                  <td>Curaçao</td>
+                              </tr>
+                              <tr>
+                                  <td>3</td>
+                                  <td>Sage Rodriguez</td>
+                                  <td>$56,142</td>
+                                  <td>Netherlands</td>
+                              </tr>
+                              <tr>
+                                  <td>4</td>
+                                  <td>Philip Chaney</td>
+                                  <td>$38,735</td>
+                                  <td>Korea, South</td>
+                              </tr>
+                              
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+          </div>
+         
+      </div>
+       -->
+  
+

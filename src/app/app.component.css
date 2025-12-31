@@ -1,0 +1,32 @@
+
+/* WRAPPER *
+
+/* SIDEBAR */
+app-sidebar {
+  width: 260px;
+  flex-shrink: 0;
+}
+
+
+
+/* NAVBAR */
+app-navbar {
+  flex-shrink: 0;
+}
+
+/* PAGE CONTENT */
+router-outlet {
+  display: block;
+}
+
+/* ROUTED CONTENT CONTAINER */
+.main-panel > router-outlet + * {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  padding-bottom: 20px;
+}
+
+/* FOOTER */
+app-footer {
+  flex-shrink: 0;
+}

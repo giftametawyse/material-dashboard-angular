@@ -1,0 +1,136 @@
+<div class="auth-page">
+  <div class="auth-card">
+
+    <!-- LEFT PANEL -->
+    <div class="auth-left">
+      <div class="brand">
+        <div class="brand-icon">
+          <i class="fa-solid fa-wave-square"></i>
+        </div>
+
+        <h1>POWER GEN</h1>
+        <p class="brand-sub">Monitoring Solutions</p>
+
+        <h2 class="hero-title">
+          Join Our <br />
+          Monitoring Network
+        </h2>
+
+        <p class="hero-desc">
+          Get started with enterprise-grade environmental monitoring today
+        </p>
+      </div>
+
+      <div class="features">
+        <div class="feature">
+          <div class="feature-icon">
+            <i class="fa-solid fa-shield-halved"></i>
+          </div>
+          <div>
+            <strong>Secure Access</strong>
+            <span>Protected authentication system</span>
+          </div>
+        </div>
+
+        <div class="feature">
+          <div class="feature-icon">
+            <i class="fa-solid fa-chart-line"></i>
+          </div>
+          <div>
+            <strong>Advanced Analytics</strong>
+            <span>Comprehensive data insights</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="left-footer">
+        © 2025 Power Gen. All rights reserved.
+      </div>
+    </div>
+
+    <!-- RIGHT PANEL -->
+    <div class="auth-right">
+      <div class="form-container">
+        <h2 class="form-title">Create Account</h2>
+        <p class="form-subtitle">Register for platform access</p>
+
+        <!-- ✅ REACTIVE FORM -->
+        <form [formGroup]="registerForm" (ngSubmit)="onRegister()" class="register-grid">
+
+          <!-- Row 1 -->
+          <div class="form-group">
+            <label>First Name</label>
+            <div class="input-container">
+              <i class="fa-regular fa-user"></i>
+              <input type="text" formControlName="first_name" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Last Name</label>
+            <div class="input-container">
+              <i class="fa-regular fa-user"></i>
+              <input type="text" formControlName="last_name" />
+            </div>
+          </div>
+
+          <!-- Row 2 -->
+          <div class="form-group">
+            <label>Username</label>
+            <div class="input-container">
+              <i class="fa-regular fa-user-circle"></i>
+              <input type="text" formControlName="username" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Email</label>
+            <div class="input-container">
+              <i class="fa-regular fa-envelope"></i>
+              <input type="email" formControlName="email" />
+            </div>
+          </div>
+
+          <!-- Row 3 -->
+          <div class="form-group">
+            <label>Password</label>
+            <div class="input-container">
+              <i class="fa-solid fa-lock"></i>
+              <input type="password" formControlName="password" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Phone</label>
+            <div class="input-container">
+              <i class="fa-solid fa-phone"></i>
+              <input type="text" formControlName="phone" />
+            </div>
+          </div>
+
+          <!-- Actions -->
+          <div class="form-actions">
+            <button type="submit" class="btn-primary">
+              Create Account
+            </button>
+
+            <div class="divider"></div>
+
+            <p class="signin-text">
+              Already have an account?
+              <a (click)="router.navigate(['/login'])">Sign In</a>
+            </p>
+
+            <!-- Messages -->
+            <p class="success" *ngIf="successMessage">{{ successMessage }}</p>
+            <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+          </div>
+
+          
+
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>

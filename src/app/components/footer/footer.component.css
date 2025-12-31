@@ -1,0 +1,26 @@
+/* ===== BLUE FOOTER ===== */
+.app-footer {
+  width: 100%;
+  height: 60px;
+  background: linear-gradient(90deg, #1e3a8a,#1d4ed8);
+  box-shadow: 0 -4px 18px rgba(0, 0, 0, 0.25);
+  position: relative;
+  z-index: 1000;
+}
+
+/* Container */
+.footer-container {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;   /* ✅ THIS CENTERS TEXT */
+}
+
+/* Center text */
+.footer-center {
+  color: #e0e7ff;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.4px;
+  text-align: center;
+}
