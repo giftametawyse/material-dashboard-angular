@@ -650,3 +650,206 @@
   border-top: 1px solid #e5e7eb;
   padding-top: 24px;
 }
+
+/* ================= BLUE EARNINGS GRAPH ================= */
+
+.graph-section {
+  border-top: 1px solid #e5e7eb;
+  padding: 24px;
+  background: #f1f5f9;
+}
+
+.graph-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+/* Card */
+.earnings-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 16px;
+  box-shadow: 0 18px 45px rgba(37, 99, 235, 0.18);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.earnings-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 25px 55px rgba(37, 99, 235, 0.28);
+}
+
+/* Header */
+.earnings-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.chart-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1e3a8a;
+  margin: 0;
+}
+
+.chart-sub {
+  font-size: 12px;
+  color: #64748b;
+  margin: 2px 0 0;
+}
+
+/* Chart */
+.blue-graph .ct-chart {
+  height: 230px;
+}
+
+/* Blue line */
+.blue-graph .ct-line {
+  stroke: #2563eb !important;
+  stroke-width: 3px;
+}
+
+/* Soft area */
+.blue-graph .ct-area {
+  fill: rgba(37, 99, 235, 0.08);
+}
+
+/* Hide points */
+.blue-graph .ct-point {
+  opacity: 0;
+}
+
+/* Grid */
+.blue-graph .ct-grid {
+  stroke: #e5e7eb;
+  stroke-dasharray: 3px;
+}
+
+/* Hide axes */
+.blue-graph .ct-axis {
+  display: none;
+}
+
+
+/* ===== FORCE OVERRIDE MATERIAL DASHBOARD CHARTIST ===== */
+
+/* Remove filled area COMPLETELY */
+.blue-graph .ct-area {
+  fill: none !important;
+  opacity: 0 !important;
+}
+
+/* Thin blue line */
+.blue-graph .ct-line {
+  stroke: #2563eb !important;
+  stroke-width: 2.5px !important;
+}
+
+/* Hide points */
+.blue-graph .ct-point {
+  opacity: 0 !important;
+}
+
+/* Light grid */
+.blue-graph .ct-grid {
+  stroke: #e5e7eb !important;
+  stroke-dasharray: 3px !important;
+}
+
+/* Remove Material Dashboard shadow */
+.blue-graph svg {
+  filter: none !important;
+}
+
+/* Hide axes completely */
+.blue-graph .ct-axis {
+  display: none !important;
+}
+
+/* ===== FIGMA STYLE GRAPH ===== */
+
+.blue-graph .ct-line {
+  stroke: #0ea5e9 !important; /* clean blue */
+  stroke-width: 2px !important;
+}
+
+.blue-graph .ct-grid {
+  stroke: #e5e7eb !important;
+  stroke-dasharray: 2px !important;
+  stroke-width: 1px;
+}
+
+.blue-graph .ct-point {
+  display: none !important;
+}
+
+.blue-graph .ct-area {
+  display: none !important;
+}
+
+.blue-graph .ct-chart {
+  padding-top: 10px;
+}
+
+/* Card spacing like Figma */
+.earnings-card {
+  padding: 22px 24px 26px !important;
+}
+
+/* Header separation */
+.earnings-header {
+  margin-bottom: 16px;
+}
+
+/* ===== CHART TOOLTIP ===== */
+.chartist-tooltip {
+  position: absolute;
+  background: rgba(15, 23, 42, 0.9);
+  color: #ffffff;
+  padding: 6px 10px;
+  font-size: 12px;
+  border-radius: 6px;
+  pointer-events: none;
+  z-index: 9999;
+  white-space: nowrap;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+
+.chartist-tooltip::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 6px 6px 0 6px;
+  border-style: solid;
+  border-color: rgba(15, 23, 42, 0.9) transparent transparent transparent;
+}
+
+.blue-graph .ct-label {
+  color: #64748b;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+/* Force chart height */
+.ct-chart,
+.ct-chart svg {
+  height: 260px !important;
+  min-height: 260px !important;
+  width: 100% !important;
+  display: block !important;
+}
+
+/* Hover point effect */
+.ct-point {
+  stroke-width: 6px;
+  stroke: transparent;
+}
+
+.ct-series-a .ct-point:hover {
+  stroke: #0ea5e9;
+  stroke-width: 10px;
+  cursor: pointer;
+}

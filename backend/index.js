@@ -160,7 +160,6 @@ app.post('/api/login', async (req, res) => {
 
     if (!ok) return res.status(401).json({ error: 'Invalid credentials' });
 
-    // ✅ SEND TOKEN + USER
     return res.json({
       success: true,
       token: 'dummy-token-for-now', // you can add JWT later
