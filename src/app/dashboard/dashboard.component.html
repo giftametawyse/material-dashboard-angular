@@ -321,10 +321,9 @@
 
         <div class="card-body" style="height: 60px;">
           <h4 class="card-title text-capitalize">
-            <a [routerLink]="['/table-list']" [fragment]="sensor"
-              style="text-decoration: none; color: inherit; cursor: pointer;">
+            <span class="sensor-title">
               {{ sensor }}
-            </a>
+            </span>
           </h4>
           <p class="card-category">
             Latest: {{ latestData[sensor]?.sensor_reading ?? '--' }} |
